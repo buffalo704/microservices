@@ -1,0 +1,103 @@
+version: '3.9'
+services:
+  client:
+    image:  buffalo704/client
+    build:
+      context: .      
+      args:
+        APP_NAME: client
+        CLIENT_CI: true
+        CLIENT_WDS_SOCKET_PORT:0
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run client
+    environment:
+      - PORT=4200
+      - APP_NAME=client
+    ports:
+      - "4200:4200"          
+  posts:    
+    image:  buffalo704/posts
+    build:
+      context: .      
+      args:
+        APP_NAME: posts
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run start posts
+    environment:
+      - PORT=4000
+    ports:
+      - "4000:4000"  
+  comments:
+    image:  buffalo704/comments
+    build:
+      context: .      
+      args:
+        APP_NAME: comments
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run start comments
+    environment:
+      - PORT=4001      
+    ports:
+      - "4001:4001"   
+  query:
+    image:  buffalo704/query
+    build:
+      context: .      
+      args:
+        APP_NAME: query
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run start query
+    environment:
+      - PORT=4002      
+    ports:
+      - "4002:4002"   
+  moderation:
+    image:  buffalo704/moderation
+    build:
+      context: .      
+      args:
+        APP_NAME: moderation
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run start moderation
+    environment:
+      - PORT=4003
+    ports:
+      - "4003:4003"  
+  event-bus:
+    image:  buffalo704/event-bus
+    build:
+      context: .      
+      args:
+        APP_NAME: event-bus
+      dockerfile: Dockerfile 
+    extends:
+      file: docker-compose.base.yml      
+      service: nx-app-base
+    command: npm run start event-bus    
+    environment:
+      - PORT=4005      
+    ports:
+      - "4005:4005"   
+
+volumes:
+  mono-node-modules: null
+
+networks:
+  default:
+    name: dev-network
+    driver: bridge

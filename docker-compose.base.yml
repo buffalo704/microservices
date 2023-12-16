@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  nx-app-base:           
+    environment:
+      - DEV_PLATFORM=DOCKER
+      - HOST=0.0.0.0
+    volumes:
+      - ./:/app
+      - mono-node-modules:/app/node_modules
