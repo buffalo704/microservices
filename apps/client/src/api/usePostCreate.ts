@@ -5,7 +5,7 @@ export const usePostCreate = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (title: {title: string}) => axios.post('http://post.com/posts/create',  title ),
+    mutationFn: (title: {title: string}) => axios.post('http://posts.com/posts/create',  title ),
     onSuccess: () => {
         queryClient.invalidateQueries({queryKey: ['posts']});
       },

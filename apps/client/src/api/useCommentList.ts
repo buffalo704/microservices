@@ -5,7 +5,7 @@ export const useCommentList = (postId: string) => useQuery({
     queryKey: ['comments', postId],
     queryFn: async () => {
       const response = await axios.get(
-        `http://post.com/posts/${postId}/comments`
+        `http://posts.com/posts/${postId}/comments`
       );
       return response.data;
     },  
