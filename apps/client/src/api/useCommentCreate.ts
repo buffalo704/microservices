@@ -6,7 +6,7 @@ export const useCommentCreate = () => {
 
   return useMutation({
     mutationFn: ({content, postId}: { content: string, postId: string}) =>
-      axios.post(`http://localhost:4001/posts/${postId}/comments`, {content} ),
+      axios.post(`http://posts.com/posts/${postId}/comments`, {content} ),
     onSuccess: () => {      
       queryClient.invalidateQueries({queryKey: ['comments']});
     },

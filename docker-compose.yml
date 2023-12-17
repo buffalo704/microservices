@@ -6,8 +6,8 @@ services:
       context: .      
       args:
         APP_NAME: client
-        CLIENT_CI: true
-        CLIENT_WDS_SOCKET_PORT:0
+        CLIENT_WDS_SOCKET_PORT: 0
+        CLIENT_CI: true        
       dockerfile: Dockerfile 
     extends:
       file: docker-compose.base.yml      
