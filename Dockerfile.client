@@ -2,6 +2,8 @@ FROM node:18-alpine
 
 ARG APP_NAME
 
+ENV CI=true
+ENV WDS_SOCKET_PORT=0
 ENV env_name=${APP_NAME}
 ENV HOST=0.0.0.0
 

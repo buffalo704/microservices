@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./apps/infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: buffalo704/client
+      context: .
+      docker:
+        dockerfile: Dockerfile.client
+      sync:
+        manual:
+          - src: 'apps/client/src/**/*.*'
+            dest: .
+    - image: buffalo704/comments
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'apps/comments/src/**/*.ts'
+            dest: .
+    - image: buffalo704/event-bus
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'apps/event-bus/src/**/*.ts'
+            dest: .
+    - image: buffalo704/moderation
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'apps/moderation/src/**/*.ts'
+            dest: .
+    - image: buffalo704/posts
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'apps/posts/src/**/*.ts'
+            dest: .
+    - image: buffalo704/query
+      context: .
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'apps/query/src/**/*.ts'
+            dest: .

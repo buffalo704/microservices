@@ -5,10 +5,8 @@ services:
     build:
       context: .      
       args:
-        APP_NAME: client
-        CLIENT_WDS_SOCKET_PORT: 0
-        CLIENT_CI: true        
-      dockerfile: Dockerfile 
+        APP_NAME: client             
+      dockerfile: Dockerfile.client
     extends:
       file: docker-compose.base.yml      
       service: nx-app-base
